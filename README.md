@@ -1,117 +1,185 @@
-# FluxoNorte - Operacao Turno Critico
+# FluxoNorte
 
-Projeto desenvolvido para a Atividade Avaliativa A2 da disciplina Algoritmos de Programacao, Projetos e Computacao - APPC.
+Sistema de apoio operacional em terminal desenvolvido em Python para controle de pedidos, entregadores, prioridades, pagamentos, reembolsos e relatórios em uma empresa de logística urbana.
 
-## Objetivo
+Projeto acadêmico desenvolvido para a disciplina de Algoritmos de Programação, Projetos e Computação - APPC, adaptado para apresentação em portfólio.
 
-O sistema FluxoNorte e um prototipo em Python para apoiar uma empresa de logistica urbana no controle de pedidos, entregadores e operacoes de entrega.
+## Funcionalidades
 
-O sistema funciona em modo texto, por meio de menus, e armazena os dados em memoria usando estruturas nativas da linguagem Python.
+- Cadastro de pedidos.
+- Cadastro de entregadores.
+- Validação de ID do pedido.
+- Validação de ID do entregador.
+- Validação de prioridade do pedido.
+- Validação de veículo do entregador.
+- Busca de pedido por ID.
+- Listagem de pedidos pendentes.
+- Listagem de pedidos entregues.
+- Listagem de entregadores disponíveis.
+- Associação de entregador a pedido.
+- Remoção de associação entre pedido e entregador.
+- Atualização de status do pedido.
+- Controle de pedidos ativos por entregador.
+- Limite de pedidos baseado no veículo.
+- Listagem de pedidos pendentes por prioridade.
+- Bloqueio de entrega para pedidos não pagos.
+- Geração de reembolso para pedidos pagos e cancelados.
+- Histórico de entregas realizadas por entregador.
+- Relatório operacional com totais e indicadores.
+
+## Tecnologias
+
+- Python
+- Git e GitHub
+
+## Estrutura do projeto
+
+```text
+FluxoNorte/
+|-- evolucao_projeto/
+|   |-- etapa_01_menu.py
+|   |-- etapa_02_pedidos.py
+|   |-- etapa_03_entregadores.py
+|   |-- etapa_04_associacao_relatorios.py
+|   `-- README_EVOLUCAO.md
+|-- fluxonorte.py
+|-- relatorio_fluxonorte.docx
+|-- LICENSE
+`-- README.md
+```
 
 ## Como executar
 
-Execute o arquivo principal:
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/yguioliveira/FluxoNorte.git
+cd FluxoNorte
+```
+
+### 2. Execute o sistema
+
+No Windows:
 
 ```bash
 python fluxonorte.py
 ```
 
-Tambem e possivel abrir e executar o arquivo no IDLE do Python.org ou no Visual Studio Code.
+No Linux/macOS:
 
-## Arquivo principal
+```bash
+python3 fluxonorte.py
+```
 
-- `fluxonorte.py`: versao final completa do sistema.
+Também é possível executar o arquivo pelo IDLE do Python.org ou pelo Visual Studio Code.
 
-## Evolucao do projeto
+## Fluxo principal
 
-A pasta `evolucao_projeto` contem as versoes usadas para apresentar a evolucao do desenvolvimento:
+O sistema inicia pelo arquivo `fluxonorte.py`.
 
-- `etapa_01_menu.py`: estrutura inicial de menus.
-- `etapa_02_pedidos.py`: etapa 1 + cadastro e consulta de pedidos.
-- `etapa_03_entregadores.py`: etapas anteriores + cadastro e listagem de entregadores.
-- `etapa_04_associacao_relatorios.py`: versao final completa, igual ao `fluxonorte.py`.
-- `README_EVOLUCAO.md`: roteiro explicando o que apresentar em cada etapa.
+O menu principal permite acessar:
 
-## Funcionalidades principais
+- pedidos;
+- entregadores;
+- relatórios.
 
-- Cadastro de pedidos.
-- Cadastro de entregadores.
-- Associacao de entregador a pedido.
-- Remocao de associacao.
-- Atualizacao de status do pedido.
-- Consulta de pedidos pendentes.
-- Consulta de pedidos entregues.
-- Busca de pedido por ID.
-- Consulta de entregadores disponiveis.
-- Consulta de entregas realizadas por entregador.
-- Relatorio operacional.
+No menu de pedidos, é possível cadastrar pedidos, atualizar status, buscar pedido por ID, listar pedidos pendentes e listar pedidos entregues.
 
-## Regras de negocio implementadas
+No menu de entregadores, é possível cadastrar entregadores, associar entregador a pedido, remover associação, listar entregadores disponíveis e consultar entregas realizadas por entregador.
+
+No menu de relatórios, o sistema apresenta indicadores operacionais, como total de pedidos, quantidade por status, pedidos de alta prioridade, pedidos pagos, reembolsos gerados e entregador com maior número de entregas.
+
+## Regras de negócio
 
 ### Prioridade dos pedidos
 
-Os pedidos pendentes sao listados por prioridade. Pedidos com prioridade `Alta` aparecem antes dos pedidos `Normal`.
+Pedidos com prioridade `Alta` são listados antes dos pedidos de prioridade `Normal`.
 
-Quando dois pedidos possuem a mesma prioridade, o sistema mantem a ordem de cadastro.
+Caso dois pedidos tenham a mesma prioridade, o sistema mantém a ordem de cadastro.
 
-### Limite de pedidos por veiculo
+### Limite por veículo
 
-O limite de pedidos ativos depende do veiculo do entregador:
+O limite de pedidos ativos depende do veículo do entregador:
 
-- Moto: ate 2 pedidos ativos.
-- Carro: ate 3 pedidos ativos.
-- Van: ate 5 pedidos ativos.
+| Veículo | Limite |
+|---|---:|
+| Moto | 2 pedidos ativos |
+| Carro | 3 pedidos ativos |
+| Van | 5 pedidos ativos |
 
-Quando o entregador atinge o limite, ele fica indisponivel para novos pedidos.
+Quando o entregador atinge o limite do veículo, ele fica indisponível para novos pedidos.
 
 ### Status dos pedidos
 
-Os status utilizados sao:
+Os status utilizados são:
 
 - `Pendente`
 - `Em Rota`
 - `Entregue`
 - `Cancelado`
 
-Pedidos `Entregue` e `Cancelado` sao considerados finalizados.
+Pedidos com status `Entregue` ou `Cancelado` são considerados finalizados.
 
 ### Pagamento e reembolso
 
-No cadastro do pedido, o sistema pergunta se o pedido ja foi pago.
+No cadastro do pedido, o sistema registra se o pedido já foi pago.
 
-Se um pedido pago for cancelado, o sistema gera reembolso para o cliente.
+Regras aplicadas:
 
-Se um pedido nao pago for cancelado, nenhum reembolso e necessario.
+- Pedido não pago não pode ser marcado como `Entregue`.
+- Pedido pago e cancelado gera reembolso.
+- Pedido não pago e cancelado não gera reembolso.
+- Pedido cancelado não pode ser reativado.
 
-Pedido nao pago nao pode ser marcado como `Entregue`.
+### Histórico de entregas
 
-### Historico de entregas
+Quando um pedido é marcado como `Entregue`, ele sai da lista de pedidos ativos do entregador e entra no histórico de entregas realizadas.
 
-Quando um pedido e marcado como `Entregue`, ele sai da lista de pedidos ativos do entregador e entra na lista de entregas realizadas.
-
-Esse historico e usado para identificar o entregador com maior numero de entregas.
+Esse histórico é utilizado para identificar o entregador com maior número de entregas no relatório.
 
 ## Estruturas utilizadas
 
-O projeto utiliza:
+O projeto utiliza estruturas nativas do Python:
 
-- Listas para armazenar pedidos e entregadores.
-- Dicionarios para representar cada pedido e cada entregador.
-- Listas internas para pedidos ativos e entregas realizadas.
-- Um dicionario para definir limites de pedidos por tipo de veiculo.
+- listas;
+- dicionários;
+- funções;
+- estruturas condicionais;
+- estruturas de repetição.
 
-## Relatorio
+Principais estruturas:
 
-Os arquivos de relatorio estao na raiz do projeto:
+- `pedidos`: lista com todos os pedidos cadastrados.
+- `entregadores`: lista com todos os entregadores cadastrados.
+- `pedido`: dicionário com os dados de um pedido.
+- `entregador`: dicionário com os dados de um entregador.
+- `pedidos_ativos`: lista interna de pedidos em andamento.
+- `entregas_realizadas`: lista interna com o histórico de entregas concluídas.
+- `LIMITE_PEDIDOS_POR_VEICULO`: dicionário com o limite de pedidos por veículo.
 
-- `relatorio_fluxonorte_ajustado.pdf`
-- `relatorio_fluxonorte_ajustado.docx`
+## Evolução do projeto
 
-O PDF ajustado e a versao recomendada para entrega, pois foi atualizado com as regras finais de pagamento, reembolso e decisoes de implementacao.
+A pasta `evolucao_projeto` contém versões cumulativas usadas para demonstrar a evolução do desenvolvimento.
 
-## Observacoes
+Etapas:
 
-- O projeto nao utiliza banco de dados.
-- O projeto nao utiliza interface grafica.
-- O projeto nao utiliza bibliotecas prontas de gerenciamento empresarial.
-- Os dados ficam armazenados apenas em memoria enquanto o programa esta em execucao.
+- `etapa_01_menu.py`: estrutura inicial de menus.
+- `etapa_02_pedidos.py`: menu principal com cadastro e consulta de pedidos.
+- `etapa_03_entregadores.py`: etapas anteriores com cadastro e listagem de entregadores.
+- `etapa_04_associacao_relatorios.py`: versão final completa, igual ao `fluxonorte.py`.
+
+## Relatório
+
+O arquivo `relatorio_fluxonorte.docx` contém o relatório acadêmico do projeto, com introdução, desenvolvimento, estruturas utilizadas, decisões de implementação e referências bibliográficas.
+
+## Observações
+
+- O sistema não utiliza banco de dados.
+- O sistema não utiliza interface gráfica.
+- O sistema não utiliza bibliotecas prontas de gerenciamento empresarial.
+- Os dados ficam armazenados apenas em memória durante a execução.
+- Ao encerrar o programa, os dados cadastrados são perdidos.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT.
