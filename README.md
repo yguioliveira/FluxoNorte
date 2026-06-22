@@ -1,163 +1,123 @@
-# FluxoNorte
+# 🚚 FluxoNorte
 
-Sistema de apoio operacional em terminal desenvolvido em Python para controle de pedidos, entregadores, prioridades, pagamentos, reembolsos e relatorios em uma empresa de logistica urbana.
+Sistema de gerenciamento logístico desenvolvido em Python com foco no controle de pedidos, entregadores e acompanhamento operacional das entregas.
 
-Projeto academico desenvolvido para a disciplina de Algoritmos de Programacao, Projetos e Computacao - APPC, adaptado para apresentacao em portfolio.
+O projeto simula o funcionamento de uma central logística, aplicando regras de negócio para distribuição de pedidos, controle de disponibilidade dos entregadores e geração de relatórios gerenciais.
 
-## Funcionalidades
+---
 
-- Cadastro de pedidos.
-- Cadastro de entregadores.
-- Validacao de ID do pedido.
-- Validacao de ID do entregador.
-- Validacao de prioridade do pedido.
-- Validacao de veiculo do entregador.
-- Busca de pedido por ID.
-- Listagem de pedidos pendentes.
-- Listagem de pedidos entregues.
-- Listagem de entregadores disponiveis.
-- Associacao de entregador a pedido.
-- Remocao de associacao entre pedido e entregador.
-- Atualizacao de status do pedido.
-- Controle de pedidos ativos por entregador.
-- Limite de pedidos baseado no veiculo.
-- Listagem de pedidos pendentes por prioridade.
-- Bloqueio de entrega para pedidos nao pagos.
-- Geracao de reembolso para pedidos pagos e cancelados.
-- Historico de entregas realizadas por entregador.
-- Relatorio operacional com totais e indicadores.
+## 🎯 Objetivo
 
-## Tecnologias
+Desenvolver uma solução capaz de auxiliar no gerenciamento do fluxo de entregas, permitindo o cadastro de pedidos e entregadores, a associação entre eles e o acompanhamento do ciclo completo das entregas.
 
-- Python
-- Git e GitHub
+---
 
-## Estrutura do projeto
+## 🚀 Funcionalidades
 
-```text
-FluxoNorte/
-|-- fluxonorte.py
-|-- LICENSE
-`-- README.md
-```
+### 📦 Gerenciamento de pedidos
+- Cadastro de pedidos;
+- Busca de pedidos por ID;
+- Atualização de status;
+- Consulta de pedidos pendentes;
+- Consulta de pedidos entregues;
+- Controle de pagamento dos pedidos;
+- Processamento de reembolsos em casos de cancelamento.
 
-## Como executar
+### 🛵 Gerenciamento de entregadores
+- Cadastro de entregadores;
+- Associação de entregadores aos pedidos;
+- Remoção de associações;
+- Consulta de entregadores disponíveis;
+- Histórico de entregas realizadas.
 
-### 1. Clone o repositorio
+### ⚙️ Regras de negócio implementadas
+- Validação dos IDs de pedidos e entregadores;
+- Limite de pedidos ativos conforme o tipo de veículo:
+  - 🏍️ Moto: até 2 pedidos;
+  - 🚗 Carro: até 3 pedidos;
+  - 🚐 Van: até 5 pedidos;
+- Impedimento de associação de pedidos cancelados ou já entregues;
+- Controle automático da disponibilidade dos entregadores;
+- Bloqueio da finalização de pedidos sem pagamento;
+- Geração automática de reembolso para pedidos pagos e posteriormente cancelados;
+- Priorização de pedidos com prioridade alta.
+
+### 📊 Relatórios
+- Quantidade total de pedidos;
+- Pedidos pendentes;
+- Pedidos em rota;
+- Pedidos entregues;
+- Pedidos cancelados;
+- Pedidos de alta prioridade;
+- Total de pedidos pagos;
+- Reembolsos gerados;
+- Identificação do entregador com maior número de entregas.
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+- Python 3
+- Biblioteca padrão do Python (`os`)
+- VS Code
+
+---
+
+## 🧠 Conceitos aplicados
+
+Durante o desenvolvimento do projeto foram aplicados conceitos como:
+
+- Estruturas de dados (listas e dicionários);
+- Modularização por funções;
+- Validação de entradas;
+- Controle de fluxo;
+- Regras de negócio;
+- Simulação de processos logísticos;
+- Geração de relatórios operacionais.
+
+---
+
+## ▶️ Como executar
+
+1. Clone este repositório:
 
 ```bash
-git clone https://github.com/yguioliveira/FluxoNorte.git
-cd FluxoNorte
+git clone https://github.com/yguioliveira/fluxonorte.git
 ```
 
-### 2. Execute o sistema
+2. Acesse a pasta do projeto:
 
-No Windows:
+```bash
+cd fluxonorte
+```
+
+3. Execute o arquivo principal:
 
 ```bash
 python fluxonorte.py
 ```
 
-No Linux/macOS:
+---
 
-```bash
-python3 fluxonorte.py
-```
+## 📷 Demonstração
 
-Tambem e possivel executar o arquivo pelo IDLE do Python.org ou pelo Visual Studio Code.
+Adicione aqui capturas de tela do sistema em execução.
 
-## Fluxo principal
+Exemplos:
+- Menu principal;
+- Cadastro de pedidos;
+- Associação de entregadores;
+- Relatórios;
+- Consulta de pedidos.
 
-O sistema inicia pelo arquivo `fluxonorte.py`.
+---
 
-O menu principal permite acessar:
+## 🎓 Contexto acadêmico
 
-- pedidos;
-- entregadores;
-- relatorios.
+Projeto desenvolvido como atividade acadêmica do curso de Engenharia de Software da Pontifícia Universidade Católica de Campinas (PUC Campinas).
 
-No menu de pedidos, e possivel cadastrar pedidos, atualizar status, buscar pedido por ID, listar pedidos pendentes e listar pedidos entregues.
+---
 
-No menu de entregadores, e possivel cadastrar entregadores, associar entregador a pedido, remover associacao, listar entregadores disponiveis e consultar entregas realizadas por entregador.
+## 📚 Aprendizados
 
-No menu de relatorios, o sistema apresenta indicadores operacionais, como total de pedidos, quantidade por status, pedidos de alta prioridade, pedidos pagos, reembolsos gerados e entregador com maior numero de entregas.
-
-## Regras de negocio
-
-### Prioridade dos pedidos
-
-Pedidos com prioridade `Alta` sao listados antes dos pedidos de prioridade `Normal`.
-
-Caso dois pedidos tenham a mesma prioridade, o sistema mantem a ordem de cadastro.
-
-### Limite por veiculo
-
-O limite de pedidos ativos depende do veiculo do entregador:
-
-| Veiculo | Limite |
-|---|---:|
-| Moto | 2 pedidos ativos |
-| Carro | 3 pedidos ativos |
-| Van | 5 pedidos ativos |
-
-Quando o entregador atinge o limite do veiculo, ele fica indisponivel para novos pedidos.
-
-### Status dos pedidos
-
-Os status utilizados sao:
-
-- `Pendente`
-- `Em Rota`
-- `Entregue`
-- `Cancelado`
-
-Pedidos com status `Entregue` ou `Cancelado` sao considerados finalizados.
-
-### Pagamento e reembolso
-
-No cadastro do pedido, o sistema registra se o pedido ja foi pago.
-
-Regras aplicadas:
-
-- Pedido nao pago nao pode ser marcado como `Entregue`.
-- Pedido pago e cancelado gera reembolso.
-- Pedido nao pago e cancelado nao gera reembolso.
-- Pedido cancelado nao pode ser reativado.
-
-### Historico de entregas
-
-Quando um pedido e marcado como `Entregue`, ele sai da lista de pedidos ativos do entregador e entra no historico de entregas realizadas.
-
-Esse historico e utilizado para identificar o entregador com maior numero de entregas no relatorio.
-
-## Estruturas utilizadas
-
-O projeto utiliza estruturas nativas do Python:
-
-- listas;
-- dicionarios;
-- funcoes;
-- estruturas condicionais;
-- estruturas de repeticao.
-
-Principais estruturas:
-
-- `pedidos`: lista com todos os pedidos cadastrados.
-- `entregadores`: lista com todos os entregadores cadastrados.
-- `pedido`: dicionario com os dados de um pedido.
-- `entregador`: dicionario com os dados de um entregador.
-- `pedidos_ativos`: lista interna de pedidos em andamento.
-- `entregas_realizadas`: lista interna com o historico de entregas concluidas.
-- `LIMITE_PEDIDOS_POR_VEICULO`: dicionario com o limite de pedidos por veiculo.
-
-## Observacoes
-
-- O sistema nao utiliza banco de dados.
-- O sistema nao utiliza interface grafica.
-- O sistema nao utiliza bibliotecas prontas de gerenciamento empresarial.
-- Os dados ficam armazenados apenas em memoria durante a execucao.
-- Ao encerrar o programa, os dados cadastrados sao perdidos.
-
-## Licenca
-
-Este projeto esta licenciado sob a licenca MIT.
+Este projeto contribuiu para o desenvolvimento de habilidades relacionadas à modelagem de regras de negócio, validação de dados, organização do código e construção de aplicações orientadas à resolução de problemas reais.
